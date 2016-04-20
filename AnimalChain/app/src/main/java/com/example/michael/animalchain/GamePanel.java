@@ -13,6 +13,8 @@ import android.view.SurfaceView;
 
 import com.example.michael.AnimalChain.R;
 
+import java.util.Random;
+
 import static android.graphics.BitmapFactory.decodeResource;
 
 /**
@@ -31,6 +33,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     private int width;
     private int height;
     private Player player;
+    private Shrimp shrimp;
 
     public GamePanel(Context context)
     {
@@ -72,8 +75,17 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
     public void surfaceCreated(SurfaceHolder holder)
     {
         bg = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.space));
-
+        shrimp = new Shrimp(BitmapFactory.decodeResourceStream(getResources(), R.drawable.Shrimp),100,100,2);
         player = new Player(BitmapFactory.decodeResource(getResources(), R.drawable.ufo), 340, 215, 4);
+        thread.setRunning(true);
+        thread.start();
+
+    }
+    public void surfaceCreated(SurfaceHolder holder)
+    {
+        bg = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.space));
+
+        shrimp = new Shrimp(BitmapFactory.decodeResource(getResources(), R.drawable.shrimp), 340, 215, 2);
         thread.setRunning(true);
         thread.start();
 
@@ -125,6 +137,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback
             canvas.scale(scaleFactorX, scaleFactorY);
             bg.draw(canvas);
             player.draw(canvas);
+            shrimp.draw(canvas);
             canvas.restoreToCount(savedState);
         }
     }

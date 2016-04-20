@@ -9,14 +9,14 @@ import android.graphics.Canvas;
 public class Player extends GameObject{
     private Bitmap spritesheet;
     private int score;
-    private double dya;
+    private double dya; //direction of y axis
     private boolean up;
     private boolean playing;
     private Animation animation = new Animation();
     private long startTime;
 
-    public Player(Bitmap res, int w, int h, int numFrames)
-    {
+        public Player(Bitmap res, int w, int h, int numFrames)
+        {
         x = 100;
         y = GamePanel.HEIGHT/2;
         dy = 0;
